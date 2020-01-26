@@ -13,7 +13,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    product.cpp \
+    user.cpp
 
 HEADERS  += mainwindow.h
 
