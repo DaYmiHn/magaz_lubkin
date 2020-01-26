@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
 
     db.setDatabaseName(url);
     db.open();
-
+    connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(loginUser()));
     MainWindow::showProduct();
 }
 

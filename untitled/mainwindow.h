@@ -8,11 +8,10 @@ class MainWindow;
 }
 struct User {
     int id = 0;
-    QString login = "";
-    int role = 0;
-    bool authorized = false;
-    int cartCount = 0;
-    int productsID[20];
+    QString name = "";
+    QString log = "";
+    QString pas = "";
+    QString status = "";
 };
 class MainWindow : public QMainWindow
 {
@@ -27,6 +26,8 @@ private:
 public slots:
     void showProduct();
     void getProduct();
+
+    void loginUser();
 public:
     int govno;
 
