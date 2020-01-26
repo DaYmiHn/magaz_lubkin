@@ -3,6 +3,8 @@
 #include "QtSql/QSqlDatabase"
 #include "QSqlQuery"
 #include <QString>
+#include <QDir>
+#include <QHBoxLayout>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,7 +12,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(showProduct()));
 
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+
+    QDir tmpCurrDir = QDir::current();
+    tmpCurrDir.cdUp();
+    QString url = tmpCurrDir.path() + "/database.db3";
+
+    db.setDatabaseName(url);
+    db.open();
 }
 
 MainWindow::~MainWindow()
@@ -20,33 +32,33 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:\\qt_project\\magaz\\database.db3");
-    db.open();
-
-    //Осуществляем запрос
     QSqlQuery query;
+
     query.exec("SELECT * FROM product");
     int count = 0;
-    //Выводим значения из запроса
-    while (query.next())
-    {
-//    QString id = query.value(1).toString();
-//    count = QString::number(query.size());
-//    ui->textEdit->insertPlainText(id+"\n");
-    count++;
-    }
-    ui->statusBar->showMessage( QString::number(count));
+    while (query.next())count++;
+
     ui->tableWidget->setRowCount(count);
-    ui->tableWidget->setColumnCount(3);
+    ui->tableWidget->setColumnCount(4);
     query.first();
     for(int i=0; i<count; i++){
         for(int j=0; j<3; j++){
             ui->tableWidget->setItem(i, j, new QTableWidgetItem(query.value(j).toString()));
         }
         query.next();
+        QWidget* pWidget = new QWidget();
+        QPushButton* btn_edit = new QPushButton();
+        btn_edit->setText("Купить");
+        QHBoxLayout* pLayout = new QHBoxLayout(pWidget);
+        pLayout->addWidget(btn_edit);
+        pLayout->setAlignment(Qt::AlignCenter);
+        pLayout->setContentsMargins(0, 0, 0, 0);
+        pWidget->setLayout(pLayout);
+        ui->tableWidget->setCellWidget(i, 3, pWidget);
     }
+    MainWindow::showProduct();
 
 }
-
+void MainWindow::showProduct(){
+    ui->statusBar->showMessage("sdfsdf");
+}

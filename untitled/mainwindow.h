@@ -20,6 +20,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+public slots:
+    void showProduct();
 };
 
 #endif // MAINWINDOW_H
