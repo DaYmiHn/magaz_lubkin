@@ -19,9 +19,8 @@ void MainWindow::showProduct(){
     ui->tableWidget->setColumnCount(4);
     query.first();
     for(int i=0; i<count; i++){
-        for(int j=0; j<3; j++){
-            ui->tableWidget->setItem(i, j, new QTableWidgetItem(query.value(j).toString()));
-        }
+        for(int j=0; j<3; j++) ui->tableWidget->setItem(i, j, new QTableWidgetItem(query.value(j).toString()));
+
         QWidget* pWidget = new QWidget();
         QPushButton* btn_edit = new QPushButton();
         btn_edit->setText("Купить");
@@ -34,8 +33,8 @@ void MainWindow::showProduct(){
 
         connect(btn_edit, SIGNAL(clicked()), this, SLOT(getProduct()));
         btn_edit->setProperty("myId", query.value(0).toInt());
-//        MainWindow::getProduct(6);
-
+        ui->tableWidget->resizeRowsToContents();   //        ui->tableWidget->resizeColumnsToContents();
+        ui->tableWidget->horizontalHeader()->hide(); ui->tableWidget->verticalHeader()->hide();
         query.next();
     }
 }
@@ -43,5 +42,12 @@ void MainWindow::showProduct(){
 void MainWindow::getProduct(){
     QPushButton *button = (QPushButton *)sender();
     int id = button->property("myId").toInt();
-    ui->statusBar->showMessage("ID="+QString::number(id));
+
+    QSqlQuery query;
+    query.exec("SELECT * FROM product WHERE id = "+QString::number(id));
+    query.first();
+    QString tovar = "";
+    for(int j=0; j<3; j++) tovar+=query.value(j).toString();
+
+    ui->statusBar->showMessage(tovar);
 }
