@@ -8,7 +8,6 @@ class MainWindow;
 }
 struct User {
     int id = 0;
-    QString name = "";
     QString log = "";
     QString pas = "";
     QString status = "";
@@ -28,8 +27,11 @@ public slots:
     void getProduct();
 
     void loginUser();
+    void regUser();
+    void exitUser();
 public:
     int govno;
+
 
 private:
     User user;
