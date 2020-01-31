@@ -20,15 +20,17 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private:
+public:
     Ui::MainWindow *ui;
 public slots:
     void showProduct();
-    void getProduct();
+//    void getProduct();
 
     void loginUser();
     void regUser();
     void exitUser();
+    void purchase();
+
 public:
     int govno;
 

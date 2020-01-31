@@ -5,6 +5,7 @@
 #include <QString>
 #include <QDir>
 #include <QHBoxLayout>
+#include <QLineEdit>
 
 
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow)
@@ -20,9 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
 
     db.setDatabaseName(url);
     db.open();
-    connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(loginUser()));
-    connect(ui->pushButton_3, SIGNAL(clicked()),this, SLOT(regUser()));
+
+
+    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(loginUser()));
+    connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(regUser()));
     connect(ui->pushButton_6, SIGNAL(clicked()),this, SLOT(exitUser()));
+    ui->stackedWidget->setCurrentIndex(3);
     MainWindow::showProduct();
 }
 
