@@ -6,7 +6,7 @@
 #include <QDir>
 #include <QHBoxLayout>
 #include <QPushButton>
-
+#include <QTableWidget>
 
 void MainWindow::loginUser(){
     QString login = ui->lineEdit->text();
@@ -20,7 +20,9 @@ void MainWindow::loginUser(){
         user.pas = query.value(2).toString();
         user.status = query.value(3).toString();
         ui->statusBar->showMessage("Здравствуй, "+user.log);
-        ui->stackedWidget->setCurrentIndex(2);
+        if (user.status == "buy") ui->stackedWidget->setCurrentIndex(2);
+        if (user.status == "sell") ui->stackedWidget->setCurrentIndex(1);
+        if (user.status == "admin") ui->stackedWidget->setCurrentIndex(0);
     } else {
         ui->statusBar->showMessage("Неправильный логин или пароль или вас не существует, ну или сломалось всё :(");
     }
@@ -61,21 +63,30 @@ void MainWindow::exitUser(){
    ui->stackedWidget->setCurrentIndex(3);
 }
 
-void MainWindow::purchase(){
-    QPushButton *button = (QPushButton *)sender();
-    int id = button->property("myId").toInt();
+void MainWindow::getHistory(){
+    QWidget *form = new QWidget();
+    QTableWidget *table = new QTableWidget(form);
+    form->resize(250,200);
 
     QSqlQuery query;
-    query.exec("SELECT * FROM product WHERE id = "+QString::number(id));
-    query.first();
-    int count=query.value(3).toInt()-1;
-    QString name = query.value(1).toString();
-    query.exec("UPDATE product SET count = "+QString::number(count)+" WHERE id = "+QString::number(id)+";");
-    query.first();
 
-    query.exec("INSERT INTO `transaction`(`id`,`text`) VALUES (NULL,'"+user.log+" купил "+name+"');");
-    query.first();
+    query.exec("SELECT * FROM history");
+    int count = 0;
+    while (query.next())count++;
 
-    ui->statusBar->showMessage(QString::number(id));
+    table->setRowCount(count);
+    table->setColumnCount(2);
+    table->resizeRowsToContents();
+//    table->resizeColumnsToContents();
+    table->horizontalHeader()->hide();
+    table->verticalHeader()->hide();
+    query.first();
+    for(int i=0; i<count; i++){
+        for(int j=0; j<3; j++) table->setItem(i, j, new QTableWidgetItem(query.value(j).toString()));
+        query.next();
+    }
+
+
+    form->show();
 }
 

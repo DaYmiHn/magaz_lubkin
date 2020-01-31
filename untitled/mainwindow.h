@@ -24,12 +24,12 @@ public:
     Ui::MainWindow *ui;
 public slots:
     void showProduct();
-//    void getProduct();
+    void purchase();
 
     void loginUser();
     void regUser();
     void exitUser();
-    void purchase();
+    void getHistory();
 
 public:
     int govno;

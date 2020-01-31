@@ -40,4 +40,22 @@ void MainWindow::showProduct(){
     }
 }
 
+void MainWindow::purchase(){
+    QPushButton *button = (QPushButton *)sender();
+    int id = button->property("myId").toInt();
+
+    QSqlQuery query;
+    query.exec("SELECT * FROM product WHERE id = "+QString::number(id));
+    query.first();
+    int count=query.value(3).toInt()-1;
+    QString name = query.value(1).toString();
+    query.exec("UPDATE product SET count = "+QString::number(count)+" WHERE id = "+QString::number(id)+";");
+    query.first();
+
+    query.exec("INSERT INTO `history`(`id`,`text`) VALUES (NULL,'"+user.log+" купил "+name+"');");
+    query.first();
+
+    ui->statusBar->showMessage(QString::number(id));
+}
+
 
