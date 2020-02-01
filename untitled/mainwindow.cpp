@@ -24,12 +24,16 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
 
 
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(loginUser()));
-    connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(regUser()));
+    connect(ui->pushButton_2,  SIGNAL(clicked()),this, SLOT(regUser()));
 
     connect(ui->pushButton_5, SIGNAL(clicked()),this, SLOT(getHistory()));
     connect(ui->pushButton_6, SIGNAL(clicked()),this, SLOT(exitUser()));
+
+    connect(ui->pushButton_9, SIGNAL(clicked()),this, SLOT(editProduct()));
+    connect(ui->pushButton_10, SIGNAL(clicked()),this, SLOT(exitUser()));
     ui->stackedWidget->setCurrentIndex(3);
-    MainWindow::showProduct();
+
+
 }
 
 MainWindow::~MainWindow()

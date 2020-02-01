@@ -20,8 +20,14 @@ void MainWindow::loginUser(){
         user.pas = query.value(2).toString();
         user.status = query.value(3).toString();
         ui->statusBar->showMessage("Здравствуй, "+user.log);
-        if (user.status == "buy") ui->stackedWidget->setCurrentIndex(2);
-        if (user.status == "sell") ui->stackedWidget->setCurrentIndex(1);
+        if (user.status == "buy") {
+            MainWindow::showProduct();
+            ui->stackedWidget->setCurrentIndex(2);
+        }
+        if (user.status == "sell") {
+            MainWindow::showSellProduct();
+            ui->stackedWidget->setCurrentIndex(1);
+        }
         if (user.status == "admin") ui->stackedWidget->setCurrentIndex(0);
     } else {
         ui->statusBar->showMessage("Неправильный логин или пароль или вас не существует, ну или сломалось всё :(");
@@ -89,4 +95,6 @@ void MainWindow::getHistory(){
 
     form->show();
 }
+
+
 

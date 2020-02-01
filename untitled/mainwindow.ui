@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="admin">
      <widget class="QComboBox" name="comboBox_2">
@@ -83,19 +83,6 @@
      </widget>
     </widget>
     <widget class="QWidget" name="sell">
-     <widget class="QPushButton" name="pushButton_9">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>270</y>
-        <width>261</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Выполнить</string>
-      </property>
-     </widget>
      <widget class="QTableWidget" name="tableWidget_3">
       <property name="geometry">
        <rect>
@@ -106,46 +93,53 @@
        </rect>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_3">
+     <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>270</y>
-        <width>261</width>
+        <width>521</width>
         <height>41</height>
        </rect>
       </property>
-      <item>
-       <property name="text">
-        <string>Удаление</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Изменение</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Добавить</string>
-       </property>
-      </item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton_10">
+         <property name="text">
+          <string>Выход</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_3">
+         <item>
+          <property name="text">
+           <string>Удаление</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Изменение</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Добавить</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_9">
+         <property name="text">
+          <string>Выполнить</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="buy">
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>181</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Корзина</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_6">
       <property name="geometry">
        <rect>
@@ -172,7 +166,7 @@
      <widget class="QPushButton" name="pushButton_5">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>0</x>
         <y>0</y>
         <width>181</width>
         <height>41</height>
@@ -200,7 +194,7 @@
           <string/>
          </property>
          <property name="text">
-          <string>den</string>
+          <string>mal</string>
          </property>
          <property name="placeholderText">
           <string>Логин</string>
@@ -210,7 +204,7 @@
        <item>
         <widget class="QLineEdit" name="lineEdit_2">
          <property name="text">
-          <string>123</string>
+          <string>228</string>
          </property>
          <property name="placeholderText">
           <string>Пароль</string>
@@ -240,6 +234,66 @@
         <widget class="QPushButton" name="pushButton_2">
          <property name="text">
           <string>ЗАРЕГИСТРИРОВАТЬСЯ</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="addProduct">
+     <widget class="QWidget" name="verticalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>50</y>
+        <width>160</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLineEdit" name="lineEdit_3"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_4"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_5"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>Добавить</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="editProduct">
+     <widget class="QWidget" name="verticalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>50</y>
+        <width>160</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLineEdit" name="lineEdit_6"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_7"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_8"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>Изменить</string>
          </property>
         </widget>
        </item>
